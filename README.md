@@ -15,8 +15,69 @@
 
 ## Creating the project
 
+The create-project command is used to create a new project from a template in Laravel. 
+
+```
+composer create-project laravel/laravel CrudLaravel
+
+```
 
 ## Database Connection
+
+
+#### Check for the Extension File
+
+Ensure that the php_pdo_sqlsrv.dll file is located in the correct directory:
+
+![image](https://github.com/user-attachments/assets/2052b564-5392-4197-a30b-0dbf79ceb326)
+
+Expected Path: C:\xampp\php\ext\php_pdo_sqlsrv.dll
+
+
+<strong> If the file does not exist, follow the steps below: </strong>
+
+<details>
+<summary>Click to show details about how to configure </summary>
+
+#### STEP 1
+
+Check the PHP version.
+
+![image](https://github.com/user-attachments/assets/e08ed15f-bfd3-47b1-b4df-7d36e8bbfa5e)
+
+
+#### STEP 2
+
+The pdo_sqlsrv extension must be compatible with the PHP version you are using. Download the correct version of the extension from the Microsoft Drivers for PHP for SQL Server.
+
+Go to the SQL Server driver versions for PHP and download the version corresponding to your PHP version:
+
+https://github.com/microsoft/msphpsql/releases 
+
+![image](https://github.com/user-attachments/assets/7c6b92da-67e9-458f-bd0e-0ff19504748f)
+
+
+#### STEP 3
+
+Move the downloaded dll file to the following path and remove the version number from the file name:
+
+C:\xampp\php\ext\php_pdo_sqlsrv.dll
+
+![image](https://github.com/user-attachments/assets/e815bf3f-ee1c-40ea-837a-c42c1369f1f3)
+
+
+#### STEP 4
+
+Configure the php.ini file located in C:\xampp\php\ and add or verify the line to load the extension:
+
+```
+extension=pdo_sqlsrv
+```
+
+![image](https://github.com/user-attachments/assets/83d987e0-3a1f-4917-a23b-60295eac4b92)
+
+
+</details>
 
 # Project Documentation
 
