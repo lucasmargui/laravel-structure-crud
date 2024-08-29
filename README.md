@@ -17,15 +17,27 @@
 
 The create-project command is used to create a new project from a template in Laravel. 
 
-```
-composer create-project laravel/laravel CrudLaravel
+<details>
+<summary>Click to show details about</summary>
 
 ```
+composer create-project laravel/laravel CrudLaravel
+```
+
+### Use Artisan to Start the Server
+
+``` 
+php artisan serve 
+```
+
+</details>
 
 ## Database Connection
 
+<details>
+<summary>Click to show details about how to configure </summary>
 
-#### Check for the Extension File
+### Check for the Extension File
 
 Ensure that the php_pdo_sqlsrv.dll file is located in the correct directory:
 
@@ -75,6 +87,28 @@ extension=pdo_sqlsrv
 ```
 
 ![image](https://github.com/user-attachments/assets/83d987e0-3a1f-4917-a23b-60295eac4b92)
+
+
+</details>
+
+<br>
+
+### Configure Connection Files
+
+##### .env for SQL Server Connection Configure 
+
+Update the .env file to configure the connection to the SQL Server from SQL Server Management Studio.
+
+![image](https://github.com/user-attachments/assets/d388ab97-fccd-4d07-9e66-f9869456ded0)
+
+
+#### Configure database/config.php and Add the Connection
+
+Edit the database/config.php file and add the connection settings for SQL Server.
+
+![image](https://github.com/user-attachments/assets/439198b3-2800-4a3c-bb95-4ed86f0ee323)
+
+<br>
 
 
 </details>
