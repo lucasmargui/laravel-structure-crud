@@ -35,91 +35,143 @@ php artisan serve
 ## Database Connection
 
 <details>
-<summary>Click to show details about how to configure </summary>
+<summary>Click to show details about</summary>
 
 ### Check for the Extension File
 
-Ensure that the php_pdo_sqlsrv.dll file is located in the correct directory:
+Ensure that the `php_pdo_sqlsrv.dll` file is located in the correct directory:
 
 ![image](https://github.com/user-attachments/assets/2052b564-5392-4197-a30b-0dbf79ceb326)
 
-Expected Path: C:\xampp\php\ext\php_pdo_sqlsrv.dll
+**Expected Path:** `C:\xampp\php\ext\php_pdo_sqlsrv.dll`
 
+### If the file does not exist (Optional):
 
-<strong> If the file does not exist, follow the steps below: </strong>
-
-<details>
-<summary>Click to show details about how to configure </summary>
-
-#### STEP 1
-
-Check the PHP version.
+#### STEP 1: Check the PHP version
 
 ![image](https://github.com/user-attachments/assets/e08ed15f-bfd3-47b1-b4df-7d36e8bbfa5e)
 
+#### STEP 2: Download the Compatible Extension
 
-#### STEP 2
+The `pdo_sqlsrv` extension must be compatible with the PHP version you are using. Download the correct version of the extension from the Microsoft Drivers for PHP for SQL Server.
 
-The pdo_sqlsrv extension must be compatible with the PHP version you are using. Download the correct version of the extension from the Microsoft Drivers for PHP for SQL Server.
-
-Go to the SQL Server driver versions for PHP and download the version corresponding to your PHP version:
-
-https://github.com/microsoft/msphpsql/releases 
+Go to the [SQL Server driver versions for PHP](https://github.com/microsoft/msphpsql/releases) and download the version corresponding to your PHP version:
 
 ![image](https://github.com/user-attachments/assets/7c6b92da-67e9-458f-bd0e-0ff19504748f)
 
+#### STEP 3: Move the Downloaded DLL File
 
-#### STEP 3
+Move the downloaded `.dll` file to the following path and remove the version number from the file name:
 
-Move the downloaded dll file to the following path and remove the version number from the file name:
-
-C:\xampp\php\ext\php_pdo_sqlsrv.dll
+`C:\xampp\php\ext\php_pdo_sqlsrv.dll`
 
 ![image](https://github.com/user-attachments/assets/e815bf3f-ee1c-40ea-837a-c42c1369f1f3)
 
+#### STEP 4: Configure the `php.ini` File
 
-#### STEP 4
+Edit the `php.ini` file located in `C:\xampp\php\` and add or verify the following line to load the extension:
 
-Configure the php.ini file located in C:\xampp\php\ and add or verify the line to load the extension:
-
-```
+```ini
 extension=pdo_sqlsrv
 ```
 
-![image](https://github.com/user-attachments/assets/83d987e0-3a1f-4917-a23b-60295eac4b92)
+## Configure Connection Files
 
-
-</details>
-
-<br>
-
-### Configure Connection Files
-
-##### .env for SQL Server Connection Configure 
+##### .env for SQL Server Connection Configure: 
 
 Update the .env file to configure the connection to the SQL Server from SQL Server Management Studio.
 
 ![image](https://github.com/user-attachments/assets/d388ab97-fccd-4d07-9e66-f9869456ded0)
 
 
-#### Configure database/config.php and Add the Connection
+#### Configure database/config.php and Add the Connection:
 
 Edit the database/config.php file and add the connection settings for SQL Server.
 
 ![image](https://github.com/user-attachments/assets/439198b3-2800-4a3c-bb95-4ed86f0ee323)
-
-<br>
 
 
 </details>
 
 # Project Documentation
 
-
 ## Create Models
 
-#### Model Order: One to Many
+<details>
+<summary>Click to show details about</summary>
 
+### Create the Migration and Model MATERIAL 
+
+Run the Artisan command to create the migration and model: 
+
+```
+php artisan make:model Material –m
+```
+
+This command creates a model called Material in app/Models/Material.php and a migration in database/migrations/xxxx_xx_xx_xxxxxx_create_materials_table.php for the corresponding table. 
+
+###  Define Migration 
+
+Open the generated migration in database/migrations/xxxx_xx_xx_xxxxxx_create_materials_table.php and define the table columns according to your Django class: 
+
+![image](https://github.com/user-attachments/assets/4a3c1f15-eec8-420f-a7cd-74e8c35f60fa)
+
+
+###  Define the Model 
+
+Open the app/Models/Material.php file and define the model:
+
+![image](https://github.com/user-attachments/assets/c9ab8e84-bf4c-4cb0-a884-242e61109230)
+
+
+### Run Migrations 
+
+Finally, run the migrations to create the table in the database: 
+
+```
+php artisan migrate
+```
+
+ 
+### Create the Migration and Model ORDER : One to Many 
+
+Run the Artisan command to create the migration and model: 
+
+```
+php artisan make:model Order –m
+```
+
+This command creates a model called Material in app/Models/Order.php and a migration in database/migrations/xxxx_xx_xx_xxxxxx_create_order_table.php for the corresponding table. 
+
+###  Define Migration 
+
+Open the generated migration in database/migrations/xxxx_xx_xx_xxxxxx_create_order_table.php and define the table columns according to your Django class: 
+
+![image](https://github.com/user-attachments/assets/e479cd94-f3e9-44e9-a63c-67466e2d9645)
+
+
+###  Define the Model 
+
+Open the app/Models/Order.php file and define the model:
+
+![image](https://github.com/user-attachments/assets/fbf31bc2-6ab3-4096-aa45-1c73ae889780)
+
+###  Change Model MATERIAL 
+
+Open the app/Models/Material.php file and add the one-to-many relationship with Order
+
+![image](https://github.com/user-attachments/assets/3f634060-844c-4127-b875-ef210b6be224)
+
+
+### Run Migrations 
+
+Finally, run the migrations to create the table in the database: 
+
+```
+php artisan migrate
+```
+
+</details>
 
 ## Migrations
 
