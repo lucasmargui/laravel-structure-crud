@@ -175,18 +175,172 @@ php artisan migrate
 
 ## Migrations
 
+<details>
+<summary>Click to show details about</summary>
+
+### Migration Structure
+
+- **up() Method:** Defines the operations to be performed when the migration is applied, such as creating a table.
+- **down() Method:** Defines the operations to revert the changes performed by the `up()` method, such as deleting a table.
+
+### Creating Migrations
+
+- **Command:** `php artisan make:migration migration_name`
+  - **Example:** `php artisan make:migration create_products_table`
+  - **Description:** This command creates a new migration file in the `database/migrations` folder. Migrations are used to create and modify tables in the database.
+
+### Run Migrations
+
+- **Command:** `php artisan migrate`
+  - **Description:** Applies all pending migrations, creating or modifying tables in the database as defined in the migrations' `up()` methods.
+
+### Check Migration Status
+
+- **Command:** `php artisan migrate:status`
+  - **Description:** Displays the status of each migration, indicating whether it was applied or not.
+
+### Update Tables
+
+- **Command:** `php artisan migrate:fresh`
+  - **Description:** Removes all tables from the database using the `down()` method and recreates them using the `up()` method. **Warning:** This command will delete all tables from the database.
+
+### Add Fields
+
+- **Command:** `php artisan make:migration add_field_to_table`
+  - **Example:** `php artisan make:migration add_category_to_products_table`
+  - **Description:** Creates a new migration to add fields to an existing table. Use `Schema::table` to modify existing tables.
+
+### Apply Changes
+
+- **Command:** `php artisan migrate`
+  - **Description:** After creating a migration to add or modify fields, run this command to apply the changes.
+
+### Undo Changes
+
+- **Command:** `php artisan migrate:rollback`
+  - **Description:** Rolls back the last batch of migrations applied.
+
+- **Command:** `php artisan migrate:reset`
+  - **Description:** Rolls back all applied migrations and re-runs them. Deletes all tables and recreates them from the migrations.
+
+
+</details>
 
 ## Template Inheritance
 
-#### Layout (Master Page):
+<details>
+<summary>Click to show details about</summary>
 
-#### Rendering Content
+### Layout (Master Page)
 
+**Create the layouts folder:** In your Laravel project directory, navigate to `resources/views` and create a new folder called `layouts`.
+
+**Add the main.blade.php file:** Inside the `layouts` folder, create a file called `main.blade.php`. This file will serve as the base layout for your pages.
+
+![image](https://github.com/user-attachments/assets/0b647866-d364-482a-b31b-5bd06e878b1c)
+
+**Main.blade.php file structure:** In the `main.blade.php` file, define the main HTML structure that will be shared across all pages that use this layout. Use the `@yield('content')` directive to indicate where the specific content of each page will be rendered.
+
+![image](https://github.com/user-attachments/assets/14286e17-0e04-4b52-8fce-615864f2a1af)
+
+
+### Rendering Content
+
+**Create the home folder:** Create sessions that will be rendered within the main layout
+
+**Create the material folder:** Create sessions that will be rendered within the main layout
+
+**Create the order folder:** Create sessions that will be rendered within the main layout
+
+
+![image](https://github.com/user-attachments/assets/a7fee61a-c73f-41e3-ad1d-42c25d7b81a6)
+
+</details>
 
 ## Controller
 
+### Create the Controller 
+
+Use Artisan, Laravel's command line tool, to generate the controller. Run the following command in the terminal: 
+
+```
+php artisan make:controller HomeController
+````
+
+This will create a HomeController.php file inside the app/Http/Controllers directory. 
+
+ 
+### Define the Method for the Home Page: 
+
+In the HomeController.php file, define an index method that will return the home.blade.php view: 
+
+![image](https://github.com/user-attachments/assets/f1785cac-5aa0-41a4-9e61-3568503dd40e)
+
+
+### Update the Route to Use the Controller:
+
+Now, you need to update the route in the routes/web.php file so that it uses the HomeController instead of directly returning the view: 
+
+![image](https://github.com/user-attachments/assets/879b50e2-898f-4175-835f-554da8ab6e4a)
+
+
 ### Actions
 
+The `MaterialController` is responsible for managing all operations related to materials in the application. It allows users to view, create, edit and delete materials through a web interface. Below are described the main actions available in this controller and what each of them accomplishes.
+
+<details>
+<summary>Click to show details about</summary>
+
+![image](https://github.com/user-attachments/assets/392b7b9b-3111-4dc8-a853-44fe9c0e6070)
+
+
+#### 1. `index()`
+- **Description:** Lists all registered materials.
+- **URL:** `GET /materials`
+- **Return:** Renders the `material.material_list` view with the list of materials.
+
+#### 2. `show($id)`
+- **Description:** Displays the details of a specific material.
+- **URL:** `GET /materials/{id}`
+- **Parameters:**
+  - `$id`: ID of the material that will be displayed.
+- **Return:** Renders the `material.material_detail` view with the material details.
+
+#### 3. `create()`
+- **Description:** Displays the form to create a new material.
+- **URL:** `GET /materials/create`
+- **Return:** Renders the `material.material_form` view.
+
+### 4. `store(Request $request)`
+- **Description:** Processes the creation form and stores a new material in the database.
+- **URL:** `POST /materials`
+- **Parameters:**
+  - `Request $request`: Creation form data.
+- **Return:** Redirects to the details page of the newly created material.
+
+#### 5. `edit($id)`
+- **Description:** Displays the form to edit an existing material.
+- **URL:** `GET /materials/{id}/edit`
+- **Parameters:**
+  - `$id`: ID of the material that will be edited.
+- **Return:** Renders the `material.material_form` view with the material data.
+
+#### 6. `update(Request $request, $id)`
+- **Description:** Processes the edit form and updates the material in the database.
+- **URL:** `PUT /materials/{id}`
+- **Parameters:**
+  - `$id`: ID of the material that will be updated.
+  - `Request $request`: Edit form data.
+- **Return:** Redirects to the list of materials with a success message.
+
+#### 7. `destroy($id)`
+- **Description:** Deletes an existing material from the database.
+- **URL:** `DELETE /materials/{id}`
+- **Parameters:**
+  - `$id`: ID of the material that will be deleted.
+- **Return:** Redirects to the list of materials after deletion.
+
+</details>
 
 ## Routes
 
