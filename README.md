@@ -259,6 +259,9 @@ php artisan migrate
 
 ## Controller
 
+<details>
+<summary>Click to show details about</summary>
+
 ### Create the Controller 
 
 Use Artisan, Laravel's command line tool, to generate the controller. Run the following command in the terminal: 
@@ -287,9 +290,6 @@ Now, you need to update the route in the routes/web.php file so that it uses the
 ### Actions
 
 The `MaterialController` is responsible for managing all operations related to materials in the application. It allows users to view, create, edit and delete materials through a web interface. Below are described the main actions available in this controller and what each of them accomplishes.
-
-<details>
-<summary>Click to show details about</summary>
 
 ![image](https://github.com/user-attachments/assets/392b7b9b-3111-4dc8-a853-44fe9c0e6070)
 
@@ -344,9 +344,179 @@ The `MaterialController` is responsible for managing all operations related to m
 
 ## Routes
 
+<details>
+<summary>Click to show details about</summary>
+
+![image](https://github.com/user-attachments/assets/55fa0ffb-c7e6-4596-9927-a4eba4c70cd7)
+
+## Main Route
+
+### 1. Home
+- **URL:** `GET /`
+- **Controller:** `HomeController`
+- **Action:** `index()`
+- **Route Name:** `home`
+- **Description:** Renders the homepage of the application.
+
+## Material Routes
+
+Routes related to materials are grouped under the `materials` prefix.
+
+### 1. List Materials
+- **URL:** `GET /materials`
+- **Controller:** `MaterialController`
+- **Action:** `index()`
+- **Route Name:** `material.index`
+- **Description:** Displays a list of all registered materials.
+
+### 2. Create Material
+- **URL:** `GET /materials/create`
+- **Controller:** `MaterialController`
+- **Action:** `create()`
+- **Route Name:** `material.create`
+- **Description:** Displays the form to create a new material.
+
+### 3. Store Material
+- **URL:** `POST /materials/create`
+- **Controller:** `MaterialController`
+- **Action:** `store()`
+- **Route Name:** `material.store`
+- **Description:** Processes and stores the data for a new material in the database.
+
+### 4. Show Material
+- **URL:** `GET /materials/{id}`
+- **Controller:** `MaterialController`
+- **Action:** `show()`
+- **Route Name:** `material.show`
+- **Parameters:** 
+  - `{id}`: ID of the material to be displayed.
+- **Description:** Displays the details of a specific material.
+
+### 5. Edit Material
+- **URL:** `GET /materials/{id}/edit`
+- **Controller:** `MaterialController`
+- **Action:** `edit()`
+- **Route Name:** `material.edit`
+- **Parameters:** 
+  - `{id}`: ID of the material to be edited.
+- **Description:** Displays the form to edit an existing material.
+
+### 6. Update Material
+- **URL:** `PUT /materials/{id}`
+- **Controller:** `MaterialController`
+- **Action:** `update()`
+- **Route Name:** `material.update`
+- **Parameters:** 
+  - `{id}`: ID of the material to be updated.
+- **Description:** Processes and updates the data for an existing material in the database.
+
+### 7. Delete Material
+- **URL:** `DELETE /materials/{id}/delete`
+- **Controller:** `MaterialController`
+- **Action:** `destroy()`
+- **Route Name:** `material.destroy`
+- **Parameters:** 
+  - `{id}`: ID of the material to be deleted.
+- **Description:** Deletes a specific material from the database.
+
+## Order Routes
+
+Routes related to orders are grouped under the `orders` prefix.
+
+### 1. List Orders
+- **URL:** `GET /orders`
+- **Controller:** `OrderController`
+- **Action:** `index()`
+- **Route Name:** `order.index`
+- **Description:** Displays a list of all registered orders.
+
+### 2. Create Order
+- **URL:** `GET /orders/create`
+- **Controller:** `OrderController`
+- **Action:** `create()`
+- **Route Name:** `order.create`
+- **Description:** Displays the form to create a new order.
+
+### 3. Store Order
+- **URL:** `POST /orders/create`
+- **Controller:** `OrderController`
+- **Action:** `store()`
+- **Route Name:** `order.store`
+- **Description:** Processes and stores the data for a new order in the database.
+
+### 4. Show Order
+- **URL:** `GET /orders/{id}`
+- **Controller:** `OrderController`
+- **Action:** `show()`
+- **Route Name:** `order.show`
+- **Parameters:** 
+  - `{id}`: ID of the order to be displayed.
+- **Description:** Displays the details of a specific order.
+
+### 5. Edit Order
+- **URL:** `GET /orders/{id}/edit`
+- **Controller:** `OrderController`
+- **Action:** `edit()`
+- **Route Name:** `order.edit`
+- **Parameters:** 
+  - `{id}`: ID of the order to be edited.
+- **Description:** Displays the form to edit an existing order.
+
+### 6. Update Order
+- **URL:** `PUT /orders/{id}`
+- **Controller:** `OrderController`
+- **Action:** `update()`
+- **Route Name:** `order.update`
+- **Parameters:** 
+  - `{id}`: ID of the order to be updated.
+- **Description:** Processes and updates the data for an existing order in the database.
+
+### 7. Delete Order
+- **URL:** `DELETE /orders/{id}/delete`
+- **Controller:** `OrderController`
+- **Action:** `destroy()`
+- **Route Name:** `order.destroy`
+- **Parameters:** 
+  - `{id}`: ID of the order to be deleted.
+- **Description:** Deletes a specific order from the database.
+
+
+</details>
 
 ## Views
 
+<details>
+<summary>Click to show details about</summary>
+
+### Data Flow
+
+1. **Reception of Request**
+   
+   When a user accesses a URL, the browser sends an HTTP request to the Laravel server.
+
+2. **Routing**
+   
+   Laravel uses the routing system to map the URL to a specific controller and method. Routes are defined in the `routes/web.php` or `routes/api.php` files.
+
+   **Routing Example:**
+   ```php
+   // routes/web.php
+   Route::get('/', [MaterialController::class, 'index'])->name('material.index');
+
+
+3. **Action and Controller**
+
+The controller is responsible for processing the request and applying the business logic. The action method in the controller is called, which can process data and prepare the response.
+
+![image](https://github.com/user-attachments/assets/291633b3-6318-491d-a5ec-ca9cc589351b)
+
+
+5. **Render View**
+
+![image](https://github.com/user-attachments/assets/ec56f2d7-c45b-4b39-9a7f-273be8daed45)
+
+
+</details>
 
 ![image](https://github.com/user-attachments/assets/4b9869df-e9ee-454d-a36f-ba1b861219dd)
 
